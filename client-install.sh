@@ -52,18 +52,33 @@ else
 # Description:       Run putbox service
 ### END INIT INFO
 
+# Must be a valid filename
+NAME=putbox
+PIDFILE=/var/run/\$NAME.pid
+#This is the command to be run, give the full pathname
+DAEMON=/usr/local/bin/unison
+
 case \"\$1\" in
   start)
-    echo 'Starting putbox...'
-    sudo -u ${USER} bash -c '/usr/local/bin/unison'
+    echo -n 'Starting putbox..'
+    start-stop-daemon --start --quiet --pidfile \$PIDFILE --chuid ${USER} \
+      --exec \$DAEMON
+    echo '.'
     ;;
   stop)
-    echo 'Stopping putbox...'
-    sudo -u ${USER} bash -c 'pkill unison'
-    sleep 2
+    echo -n 'Stopping putbox..'
+    start-stop-daemon --stop --quiet --oknodo --pidfile \$PIDFILE
+    echo '.'
     ;;
+restart)
+    echo -n 'Restarting daemon: putbox' 
+    start-stop-daemon --stop --quiet --oknodo --retry 30 --pidfile \$PIDFILE
+    start-stop-daemon --start --quiet --pidfile \$PIDFILE --chuid ${USER} \
+      --exec \$DAEMON
+    echo "."
+	;;
   *)
-    echo 'Usage: /etc/init.d/putbox {start|stop}'
+    echo 'Usage: /etc/init.d/putbox {start|stop|restart}'
     exit 1
     ;;
 esac

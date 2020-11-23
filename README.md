@@ -9,8 +9,8 @@ authentication method.
 
 #### Password-less authentication
 
-!! Skip this section and jump to `Test Connection` if you already set up your 
-key pair authentication.
+_Skip this section and jump to `Test Connection` if you already set up your 
+key pair authentication._
 
 
 **(Client Side)** Generate a key pair if don't have yet.

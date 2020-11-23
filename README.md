@@ -9,7 +9,7 @@ authentication method.
 
 #### Password-less authentication
 
-_Skip this section and jump to `Test Connection` if you already set up your 
+:exclamation: _Skip this section and jump to `Test Connection` if you already set up your 
 key pair authentication._
 
 

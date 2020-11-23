@@ -40,7 +40,7 @@ if [[ "${INIT}" == "n" ]]; then
   sudo systemctl start putbox.service
 else
 
-  echo '#! /bin/bash
+  echo "#! /bin/bash
 
 ### BEGIN INIT INFO
 # Provides:          foo
@@ -52,7 +52,7 @@ else
 # Description:       Run putbox service
 ### END INIT INFO
 
-case "$1" in
+case \"\$1\" in
   start)
     echo "Starting putbox..."
     sudo -u ${USER} bash -c 'cd /usr/local/bin/unison'
@@ -63,13 +63,13 @@ case "$1" in
     sleep 2
     ;;
   *)
-    echo "Usage: /etc/init.d/putbox {start|stop}"
+    echo "Usage: /etc/init.d/putbox \{start|stop\}"
     exit 1
     ;;
 esac
 
 exit 0
-  ' | sudo tee /etc/init.d/putbox > /dev/null
+  " | sudo tee /etc/init.d/putbox > /dev/null
   sudo chmod 755 /etc/init.d/putbox
   update-rc.d putbox defaults 
   service putbox start

@@ -69,8 +69,10 @@ case "$1" in
 esac
 
 exit 0
-  ' | sudo tee /etc/init.d/putbox
+  ' | sudo tee /etc/init.d/putbox > /dev/null
+  chmod 755 /etc/init.d/putbox
   update-rc.d putbox defaults 
+  service putbox start
 fi
 
 

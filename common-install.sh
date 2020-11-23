@@ -9,7 +9,7 @@ BIN="${PREFIX}/bin"
 REPO=https://github.com/pylover/unison.git
 TMP=$(mktemp -d)
 
-sudo apt install -y ocaml-nox git curl
+sudo apt install -y ocaml-nox git curl build-essential
 
 cd ${TMP}
 git clone --depth 1 $REPO

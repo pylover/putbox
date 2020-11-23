@@ -6,6 +6,9 @@ read -p "Enter hostname: " HOST
 read -p "Enter space name [swap]: " SPACE
 SPACE=${SPACE:-swap}
 
+read -p "Do you want to use Initd instead of Systemd [n]? " INITD 
+INITD=${INITD:-n}
+
 echo $SPACE
 echo $HOST
 
@@ -17,23 +20,57 @@ path = ${SPACE}
 repeat = watch
 " > ${PRF}
 
-echo "
-[Unit]
-Description=putbox daemon
-After=network.target
+if [ ${INIT} = "n" ]; then
+  echo "
+  [Unit]
+  Description=putbox daemon
+  After=network.target
+  
+  [Service]
+  User=${USER}
+  ExecStart=/usr/local/bin/unison
+  RestartSec=2s
+  
+  [Install]
+  WantedBy=multi-user.target
+  
+  " | sudo tee /etc/systemd/system/putbox.service > /dev/null
+  sudo systemctl daemon-reload
+  sudo systemctl enable putbox.service
+  sudo systemctl start putbox.service
+else
 
-[Service]
-User=${USER}
-ExecStart=/usr/local/bin/unison
-RestartSec=2s
+  echo "#! /bin/bash
 
-[Install]
-WantedBy=multi-user.target
+### BEGIN INIT INFO
+# Provides:          foo
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: putbox service
+# Description:       Run putbox service
+### END INIT INFO
 
-" | sudo tee /etc/systemd/system/putbox.service > /dev/null
+case "$1" in
+  start)
+    echo "Starting putbox..."
+    sudo -u ${USER} bash -c 'cd /usr/local/unison'
+    ;;
+  stop)
+    echo "Stopping putbox..."
+    sudo -u ${USER} bash -c 'pkill unison'
+    sleep 2
+    ;;
+  *)
+    echo "Usage: /etc/init.d/putbox {start|stop}"
+    exit 1
+    ;;
+esac
 
-sudo systemctl daemon-reload
-sudo systemctl enable putbox.service
-sudo systemctl start putbox.service
+exit 0
+  " | sudo tee /etc/init.d/putbox
+  update-rc.d putbox defaults 
+fi
 
 

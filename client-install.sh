@@ -55,7 +55,7 @@ else
 case \"\$1\" in
   start)
     echo 'Starting putbox...'
-    sudo -u ${USER} bash -c 'cd /usr/local/bin/unison'
+    sudo -u ${USER} bash -c '/usr/local/bin/unison'
     ;;
   stop)
     echo 'Stopping putbox...'

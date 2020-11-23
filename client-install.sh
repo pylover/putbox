@@ -20,7 +20,7 @@ path = ${SPACE}
 repeat = watch
 " > ${PRF}
 
-if [ ${INIT} = "n" ]; then
+if [[ "${INIT}" == "n" ]]; then
   echo "
   [Unit]
   Description=putbox daemon

@@ -46,6 +46,7 @@ ssh example.com "mkdir -p swap"
 
 **(Client Side)**
 ```bash
+mkdir ${HOME}/swap
 bash <(curl -s \
 "https://raw.githubusercontent.com/pylover/putbox/master/client-install.sh")
 ```

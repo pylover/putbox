@@ -32,3 +32,8 @@ WantedBy=multi-user.target
 
 " | sudo tee /etc/systemd/system/putbox.service > /dev/null
 
+systemctl daemon-reload
+systemctl enable putbox.service
+systemctl start putbox.service
+
+

@@ -1,6 +1,16 @@
 
 ## Install
 
+### Install unison on both client and server.
+
+Run this command on the server and client.
+
+```bash
+bash <(curl -s \
+"https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh")
+
+```
+
 
 ### Install Server
 
@@ -25,20 +35,19 @@ ssh-copy-id example.com
 
 #### Test Connection
 
-**(Client Side)** Try to connect to the server without password.
+**(Client Side)** Try to connect to the server without password and create 
+a directory as remote root.
 ```bash
-ssh example.com
-```
-
-#### Install unison
-
-**(Server side)**
-```bash
-bash <(curl -s \
-"https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh")
-
+ssh example.com "mkdir -p swap"
 ```
 
 ### Install client 
+
+
+**(Client Side)**
+```bash
+bash <(curl -s \
+"https://raw.githubusercontent.com/pylover/putbox/master/client-install.sh")
+```
 
 

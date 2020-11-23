@@ -54,16 +54,16 @@ else
 
 case \"\$1\" in
   start)
-    echo "Starting putbox..."
+    echo 'Starting putbox...'
     sudo -u ${USER} bash -c 'cd /usr/local/bin/unison'
     ;;
   stop)
-    echo "Stopping putbox..."
+    echo 'Stopping putbox...'
     sudo -u ${USER} bash -c 'pkill unison'
     sleep 2
     ;;
   *)
-    echo "Usage: /etc/init.d/putbox \{start|stop\}"
+    echo 'Usage: /etc/init.d/putbox {start|stop}'
     exit 1
     ;;
 esac

@@ -34,9 +34,8 @@ ssh example.com
 
 **(Server side)**
 ```bash
-curl -q \
-"https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh"  \
-| sh
+bash <(curl -s \
+"https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh")
 
 ```
 

@@ -4,8 +4,8 @@
 
 ### Install Server
 
-Let's assume you can connect to `example.com` using SSH and password
-authentication method.
+Let's assume you can connect to SSH server at `example.com` using password
+authentication method and sudo access.
 
 #### Password-less authentication
 
@@ -30,5 +30,16 @@ ssh-copy-id example.com
 ssh example.com
 ```
 
+#### Install unison
+
+**(Server side)**
+```bash
+curl -q
+"https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh" |
+sh
+
+```
+
 ### Install client 
+
 

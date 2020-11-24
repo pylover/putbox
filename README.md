@@ -39,6 +39,8 @@ if [ ! -f ${HOME}/.ssh/id_rsa.pub ]; then ssh-keygen ; fi
 ```
 
 Edit `~/.ssh/config`
+
+**(Client Side)**
 ```bash
 Host example.com
   HostName example.com

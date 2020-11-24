@@ -38,6 +38,14 @@ already set up your key pair authentication._
 if [ ! -f ${HOME}/.ssh/id_rsa.pub ]; then ssh-keygen ; fi
 ```
 
+Edit `~/.ssh/config`
+```bash
+Host example.com
+  HostName example.com
+  Port 22
+  User foo
+```
+
 **(Client Side)**
 ```bash
 ssh-copy-id example.com

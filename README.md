@@ -1,18 +1,27 @@
 
-## Install
+# putbox
 
-### Install unison on both client and server.
+Another distribution of [unison](https://github.com/bcpierce00/unison) to
+easily setup a self-hosted unlimited dropbox-like service.
 
-Run this command on the server and client.
+## Features:
 
-```bash
-bash <(curl -s \
-"https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh")
+- No server setup needed.
+- Automaticaly watch filesystem for changes.
+- Optional client-side `systemd` or `initd` daemon.
+- One line install.
 
-```
+
+## What you need before setup
+
+- A `SSH` server with key-pair authentication enabled and `sudo` access.
+- A Debian linux box as client.
 
 
-### Install Server
+## Server Install
+
+
+### Prepare Server
 
 Let's assume you can connect to SSH server at `example.com` using password
 authentication method and sudo access.
@@ -41,7 +50,23 @@ a directory as remote root.
 ssh example.com "mkdir -p swap"
 ```
 
-### Install client 
+### Install Unison on server
+
+Run this command on the server to clone, build and install unison.
+
+```bash
+bash <(curl -s \
+"https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh")
+
+```
+
+Test it by:
+
+```bash
+ssh example.com "unison -version"
+```
+
+### Client Install
 
 
 **(Client Side)**
@@ -50,5 +75,15 @@ mkdir ${HOME}/swap
 bash <(curl -s \
 "https://raw.githubusercontent.com/pylover/putbox/master/client-install.sh")
 ```
+
+You can use:
+
+```bash
+service putbox start
+service putbox stop
+service putbox restart
+```
+
+to manage the newly installed service.
 
 

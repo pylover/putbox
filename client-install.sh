@@ -6,7 +6,7 @@ read -p "Enter hostname: " HOST
 read -p "Enter space name [swap]: " SPACE
 SPACE=${SPACE:-swap}
 
-read -p "Do you want to use Initd instead of Systemd [n]? " INITD 
+read -p "Do you want to create service: initd/systemd/[n]? " INITD 
 INITD=${INITD:-n}
 
 echo $SPACE
@@ -29,7 +29,7 @@ copyonconflict = true
 " > ${PRF}
 
 
-if [[ "${INITD}" == "n" ]]; then
+if [[ "${INITD}" == "systemd" ]]; then
   echo "
   [Unit]
   Description=putbox daemon
@@ -48,7 +48,7 @@ if [[ "${INITD}" == "n" ]]; then
   sudo systemctl enable putbox.service
   sudo systemctl start putbox.service
 
-else
+elif [[ "${INITD}" == "initd" ]]; then
 
   echo "#! /bin/bash
 
@@ -99,5 +99,3 @@ exit 0
   sudo update-rc.d putbox defaults 
   sudo service putbox start
 fi
-
-

@@ -18,9 +18,18 @@ root = ${HOME}
 root = ssh://${HOST}
 path = ${SPACE} 
 repeat = watch
+ignore = Name .*.swp
+ignore = Name .*.swo
+auto = true
+batch = true
+silent = true
+retry = 5
+copymax = 2
+copyonconflict = true
 " > ${PRF}
 
-if [[ "${INIT}" == "n" ]]; then
+
+if [[ "${INITD}" == "n" ]]; then
   echo "
   [Unit]
   Description=putbox daemon
@@ -38,6 +47,7 @@ if [[ "${INIT}" == "n" ]]; then
   sudo systemctl daemon-reload
   sudo systemctl enable putbox.service
   sudo systemctl start putbox.service
+
 else
 
   echo "#! /bin/bash
@@ -86,8 +96,8 @@ esac
 exit 0
   " | sudo tee /etc/init.d/putbox > /dev/null
   sudo chmod 755 /etc/init.d/putbox
-  update-rc.d putbox defaults 
-  service putbox start
+  sudo update-rc.d putbox defaults 
+  sudo service putbox start
 fi
 
 

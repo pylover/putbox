@@ -6,6 +6,7 @@ easily setup a self-hosted unlimited dropbox-like service.
 
 ## Features:
 
+- Transfer over `RSH/SSH`.
 - No server setup needed.
 - Automaticaly watch filesystem for changes.
 - Optional client-side `systemd` or `initd` daemon.
@@ -54,6 +55,7 @@ ssh example.com "mkdir -p swap"
 
 Run this command on the server to clone, build and install unison.
 
+**(Server Side)**
 ```bash
 bash <(curl -s \
 "https://raw.githubusercontent.com/pylover/putbox/master/common-install.sh")
@@ -62,6 +64,7 @@ bash <(curl -s \
 
 Test it by:
 
+**(Client Side)**
 ```bash
 ssh example.com "unison -version"
 ```
@@ -78,6 +81,7 @@ bash <(curl -s \
 
 You can use:
 
+**(Client Side)**
 ```bash
 service putbox start
 service putbox stop
@@ -86,4 +90,5 @@ service putbox restart
 
 to manage the newly installed service.
 
+Feel free to setup another client! :)
 

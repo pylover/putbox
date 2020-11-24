@@ -26,6 +26,7 @@ silent = true
 retry = 5
 copymax = 2
 copyonconflict = true
+force = newer
 " > ${PRF}
 
 

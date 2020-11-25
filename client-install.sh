@@ -25,6 +25,7 @@ ignore = Name .*.swo
 auto = true
 batch = true
 silent = true
+log = false
 retry = 5
 copymax = 2
 copyonconflict = true

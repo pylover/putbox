@@ -34,19 +34,18 @@ force = newer
 
 
 if [[ "${INITD}" == "systemd" ]]; then
-  echo "
-  [Unit]
-  Description=putbox daemon
-  Wants=network-online.target
-  After=network-online.target
-  
-  [Service]
-  User=${USER}
-  ExecStart=/usr/local/bin/unison
-  RestartSec=2s
-  
-  [Install]
-  WantedBy=multi-user.target
+  echo "[Unit]
+Description=putbox daemon
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=${USER}
+ExecStart=/usr/local/bin/unison
+RestartSec=2s
+
+[Install]
+WantedBy=multi-user.target
   
   " | sudo tee /etc/systemd/system/putbox.service > /dev/null
   sudo systemctl daemon-reload

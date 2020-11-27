@@ -37,7 +37,8 @@ if [[ "${INITD}" == "systemd" ]]; then
   echo "
   [Unit]
   Description=putbox daemon
-  After=network.target
+  Wants=network-online.target
+  After=network-online.target
   
   [Service]
   User=${USER}

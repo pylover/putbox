@@ -38,11 +38,14 @@ if [[ "${INITD}" == "systemd" ]]; then
 Description=putbox daemon
 Wants=network-online.target
 After=network-online.target
+StartLimitBurst=50
+StartLimitInterval=1200s
 
 [Service]
 User=${USER}
 ExecStart=/usr/local/bin/unison
-RestartSec=2s
+Restart=always
+RestartSec=20s
 
 [Install]
 WantedBy=multi-user.target
